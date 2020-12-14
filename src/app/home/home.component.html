@@ -1,0 +1,76 @@
+<div class=" container-fluid row ">
+    <div class="text-center">
+        <h3>User</h3>
+    </div>
+    <h3 class="text-right ">Add User</h3>
+    <hr>
+    <form action="" [formGroup]='Form'>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" formControlName='Name' class="form-control" placeholder="Enter User Name">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="">Age</label>
+                <select name="" id="" formControlName='Age' class="form-control">
+                    <option value="">18-99</option>
+                    <option value=18>18</option>
+                    <option value=19>19</option>
+                    <option value=20>20</option>
+                    <option value=21>21</option>
+                    <option value=22>22</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2">
+
+            <label for="">Gender </label>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="">Male</label>
+                    <input type="radio" name="Gender" value="male" formControlName='Gender'>
+                </div>
+                <div class="col-sm-2">
+                    <label for="">Female</label>
+                    <input type="radio" name="Gender" value="female" formControlName='Gender'>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-1">
+            <label for="">Time to Freeze to Account</label>
+            <input type="text" formControlName='Time' class="form-control" placeholder="EX 1:00:00">
+        </div>
+        <div class="col-sm-2">
+            <input type="checkbox" (change)='checked($event)'><span> All the information are verified</span>
+        </div>
+        <div class="col-sm-1">
+            <div class="row">
+                <button class="btn" (click)='Add()' [disabled]="check">Add</button>
+            </div>
+            <div class="row ">
+                <button class="btn" (click)='Reset()'>Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="form-group text-right ">
+    <input type="text" placeholder="Serach User by Name Here" [(ngModel)]='searchText'>
+</div>
+<hr>
+<div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card col-sm-3 box" *ngFor="let data of formData|search:searchText">
+                <div class="card-body">
+                    <h3 class="card-title">{{data.Name}}</h3>
+                    <p class="card-text"><span>{{data.Age}}</span><span> Years old </span>
+                        <span>{{data.Gender}}</span></p>
+                    <p class="card-text">{{data.Time|timer}} <span> mins </span><span> Left</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
